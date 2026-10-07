@@ -73,7 +73,7 @@ Tên trên thanh tiêu đề là `data-title`. Đặt vị trí bằng `style="l
 </div>
 
 <div class="mock mock-term" data-title="Terminal" style="left:120px;top:250px;width:1060px;height:600px">
-  <div class="cmd type">git clone https://github.com/andyluu98/slidefly.git</div>
+  <div class="cmd type">git clone https://github.com/trantruongnhattan/slidefly.git</div>
   <div class="out lines"><p>Cloning into 'slidefly'...</p></div>
   <div data-step="1"><div class="cmd type" style="--prompt:'PS> '">...</div></div>
 </div>

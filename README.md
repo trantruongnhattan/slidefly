@@ -2,9 +2,11 @@
 
 Skill cho [Claude Code](https://claude.com/claude-code) tạo **slide HTML có hiệu ứng chuyển cảnh kiểu PowerPoint Morph**: hình trang trí trượt, phóng to, đổi màu liền mạch giữa các slide. Một file HTML, mở bằng Chrome là trình chiếu được. Có **57 style**, bố cục tự lấp đầy theo lượng chữ và tự đo độ trống của từng slide.
 
+Bản này phát triển tiếp từ [andyluu98/slidefly](https://github.com/andyluu98/slidefly) (MIT).
+
 *A Claude Code skill that builds single-file HTML decks with PowerPoint-Morph-like transitions: 57 styles, auto-filling layouts and an automatic fill/overflow audit. Docs are in Vietnamese.*
 
-**Xem trực tuyến:** [Thư viện 57 style](https://andyluu98.github.io/slidefly/gallery/00-gallery.html) · [Deck mẫu 20 slide (Stencil & Tablet)](https://andyluu98.github.io/slidefly/examples/ai-agent-stencil-tablet-20-slide.html) · [Deck mẫu 15 slide (Swiss Modern)](https://andyluu98.github.io/slidefly/examples/ai-agent-swiss-15-slide.html)
+**Xem trực tuyến:** [Thư viện 57 style](https://trantruongnhattan.github.io/slidefly/gallery/00-gallery.html) · [Deck mẫu 20 slide (Stencil & Tablet)](https://trantruongnhattan.github.io/slidefly/examples/ai-agent-stencil-tablet-20-slide.html) · [Deck mẫu 15 slide (Swiss Modern)](https://trantruongnhattan.github.io/slidefly/examples/ai-agent-swiss-15-slide.html)
 
 ![Thư viện style](docs/gallery.jpg)
 
@@ -37,7 +39,7 @@ Mỗi style có một nhóm hình cố định gọi là **diễn viên**. Mỗi
 ## Cài đặt
 
 ```bash
-git clone https://github.com/andyluu98/slidefly.git
+git clone https://github.com/trantruongnhattan/slidefly.git
 cp -r slidefly/skill/slidefly ~/.claude/skills/
 pip install -r slidefly/requirements.txt
 ```
@@ -87,7 +89,7 @@ gallery/                     00-gallery.html + 57 deck demo
 
 ## Ghi nguồn
 
-Các style phỏng theo [frontend-slides](https://github.com/zarazhangrui/frontend-slides) của Zara Zhang (MIT). Icon từ [Lucide](https://lucide.dev) (ISC). Font tải từ Google Fonts (SIL Open Font License). Chi tiết ở [THIRD_PARTY.md](THIRD_PARTY.md).
+Các style phỏng theo [frontend-slides](https://github.com/zarazhangrui/frontend-slides) của Zara Zhang (MIT). Icon từ [Tabler Icons](https://tabler.io/icons) (MIT). Font tải từ Google Fonts (SIL Open Font License). Chi tiết ở [THIRD_PARTY.md](THIRD_PARTY.md).
 
 ## Giấy phép
 

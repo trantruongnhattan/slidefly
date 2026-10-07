@@ -60,7 +60,7 @@ Ghi đè khi cần: `<section ... data-density="lg">`.
     <li class="reveal"><b>Từ khóa</b>: giải thích ngắn.</li>
   </ul>
   <aside class="highlight reveal-scale">
-    <div class="hl-icon"><svg viewBox="0 0 24 24">...icon Lucide...</svg></div>
+    <div class="hl-icon"><i class="ico" data-icon="shield-check"></i></div>
     <!-- hoặc <p class="hl-big">16:9</p> khi có số/chữ ngắn có nguồn -->
     <p class="hl-text">Câu chốt 3-7 từ</p>
   </aside>
@@ -202,7 +202,7 @@ Quy tắc chọn: ý nào có dáng riêng thì dùng dáng đó, đừng nhét 
 ```
 
 ## Ghi chú
-- Icon: lấy SVG Lucide (giấy phép ISC) tại `https://unpkg.com/lucide-static@latest/icons/<ten>.svg`, chỉ chép phần bên trong thẻ `<svg>`.
+- Icon: chỉ dùng Tabler Icons qua `<i class="ico" data-icon="...">` (bản ghim trong `scripts/icons.py`), tìm tên bằng `icons.py search`. Không chép SVG từ nguồn khác. Chi tiết: `references/icon-tabler.md`.
 - Không lồng phần tử `data-morph-id` vào trong phần tử `.reveal` khác ở slide đích (nó sẽ bị ẩn theo cha). Đặt `reveal` trực tiếp lên chính phần tử đó.
 - Tùy biến nhỏ cho một deck: thêm `<style>` riêng trong file nguồn, không sửa file trong `assets/`.
 
