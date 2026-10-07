@@ -150,6 +150,11 @@ def build_items(sl, sheet, base):
                 xb = style_box(v) or (x0, y0, box[1] - x0, y1 - y0)
                 ctx.box('Diagram', *xb, [para([ctx.run(s, 30)], 'l', 10, 110, '•') for s in labels] or [para([ctx.run('Sơ đồ: xem bản HTML', 26, 'muted')])],
                         'ctr', line=((t['accent'][0], 0.6), 2), geom=('roundRect', 3000), inset=40)
+        for im in node.all_class('pic'):   # pictures placed by inline left/top/width/height (maps, photos) keep their box
+            xb = style_box(im) if im.tag == 'img' else None
+            rid = image(im, base, images) if xb else None
+            if rid:
+                ctx.items.append({'name': 'Picture', 'image': True, 'rid': rid, 'x': xb[0], 'y': xb[1], 'w': xb[2], 'h': xb[3]})
         leftover_text(ctx, node, [k for k in node.children() if set(k.cls) & USED or k.tag in ('h1', 'h2')], box)
         for k in node.children(lambda n: n.tag == 'svg'):   # hand-drawn plans, lines, roads: SVG pictures
             svg_pic(ctx, k, images)
@@ -157,7 +162,7 @@ def build_items(sl, sheet, base):
     if credit:
         ctx.box('Credit', 120, 1030, 1680, 36, [para(runs(ctx, credit, 18, 'muted'))], 'ctr')
     ctx.caps = set()
-    brand(ctx, node, sl['state'], tok)   # the stage logo, on top like z-index 30
+    brand(ctx, node, sl['state'], tok, base, images)   # the stage logo, on top like z-index 30
     return t['bg'], ctx.items, '', images
 
 

@@ -172,7 +172,10 @@ def style_box(node):
 def leftover_text(ctx, node, used, box):
     """Text of top-level children no other rule consumed: never lose content. A child placed with an
     inline left/top keeps that spot; the rest (source lines, notes) goes in a small strip at the foot."""
-    rest = [k for k in node.children() if k not in used and k.text() and 'photo-credit' not in k.cls
+    def deco(k):   # an empty block placed inline with a fill or border (bar, card plate): keep it as a shape
+        d = __import__('pptx_free').decl(ctx, k) if style_box(k) else {}
+        return any(s in d for s in ('background', 'background-color', 'border'))
+    rest = [k for k in node.children() if k not in used and (k.text() or deco(k)) and 'photo-credit' not in k.cls
             and k.tag not in ('img', 'script', 'style', 'svg') and 'frame-panel' not in k.cls]
     notes, body = [], []
     for k in rest:

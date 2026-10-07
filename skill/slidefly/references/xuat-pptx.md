@@ -45,6 +45,10 @@ Gạch đầu dòng, danh sách hiện lần lượt từng dòng. Tiêu đề v
 - **Khung giao diện**: cửa sổ có thanh tiêu đề ba chấm, terminal tối có dấu `$` xanh, bong bóng chat; mỗi khối một hộp để hiện theo nhịp riêng.
 - **Slide tự thiết kế**: khối đặt bằng `left/top` (trong `style` hoặc trong CSS của deck) giữ chỗ, nền, viền, khoảng đệm, cỡ chữ, font tiêu đề hay font mono theo class CSS.
 - Icon Tabler thành hình vẽ của PowerPoint (đổi màu, phóng to không vỡ); ảnh nền, ảnh chia đôi, nguồn ảnh.
+- **Ảnh đặt tự do** (bản đồ, ảnh chụp trên slide tự thiết kế): `<img class="pic" src="..." style="left:..px;top:..px;width:..px;height:..px">` thành ảnh PowerPoint đúng chỗ, đúng cỡ. Ghi `width/height` theo đúng tỷ lệ ảnh để không méo.
+- **Logo là file ảnh** (`<div class="brand"><img src="logo.png"></div>`) thành ảnh `!!brand-img`, bay giữa các tư thế bằng Morph như bản HTML.
+- **Khối trang trí không chữ** đặt bằng `style` (thanh biểu đồ, nền ô số liệu) thành hình chữ nhật có màu nền.
+- Mẹo: khối có nền (nhãn hình viên thuốc, thẻ) phải ghi đủ `width` và `height` trong `style`, nếu không bản PPTX kéo khối đó tới mép slide. Lớp CSS riêng của deck nên có tiền tố (ví dụ `q-card`) để không trùng lớp của SlideFly (`.hot`, `.num`, `.col`): bản PPTX đọc quy tắc theo tên lớp.
 
 ## Còn đơn giản hóa
 

@@ -81,7 +81,22 @@ def css_sizes(ctx, sheet, sstate, tok, sizes):
     return out
 
 
-def brand(ctx, slide_node, state, tok):
+def _img_size(data):
+    """(width, height) of a PNG or JPEG from its header, else None."""
+    if data[:8] == b'\x89PNG\r\n\x1a\n':
+        return int.from_bytes(data[16:20], 'big'), int.from_bytes(data[20:24], 'big')
+    i = 2
+    while data[:2] == b'\xff\xd8' and i + 9 < len(data):
+        if data[i] != 0xFF:
+            break
+        mk, ln = data[i + 1], int.from_bytes(data[i + 2:i + 4], 'big')
+        if 0xC0 <= mk <= 0xCF and mk not in (0xC4, 0xC8, 0xCC):
+            return int.from_bytes(data[i + 7:i + 9], 'big'), int.from_bytes(data[i + 5:i + 7], 'big')
+        i += 2 + ln
+    return None
+
+
+def brand(ctx, slide_node, state, tok, base=None, images=None):
     """The stage logo (morph-brand.css): hero on cover/closing, small in the corner inside, hidden on quote/photo.
     Its icon and name are named !!brand-* so Morph flies them between poses like the HTML."""
     stage = slide_node.parent
@@ -101,6 +116,16 @@ def brand(ctx, slide_node, state, tok):
     name = b.by_class('brand-name')
     W = 144 + (len(name.text()) * 52 * 0.5 if name else 0)
     x = bx + a * W * s
+    img = b.find(lambda n: n.tag == 'img')
+    if img is not None and base is not None and images is not None:   # a logo file: 120px tall like .brand img
+        from pptx_shapes import image
+        rid = image(img, base, images)
+        wh = _img_size(images[rid][1]) if rid else None
+        if wh:
+            w = 120 * wh[0] / wh[1]
+            ctx.items.append({'name': '!!brand-img', 'image': True, 'rid': rid, 'x': bx + a * w * s, 'y': by,
+                              'w': w * s, 'h': 120 * s, 'anim': False})
+        return
     ico = b.find(lambda n: 'ico' in n.cls)
     if ico:
         n0 = len(ctx.items)
